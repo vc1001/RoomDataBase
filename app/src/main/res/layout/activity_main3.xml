@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <data>
+        <variable
+            name="contact"
+            type="com.example.roomdatabase.model.Contacts" />
+
+        <variable
+            name="clickHandler"
+            type="com.example.roomdatabase.MyClickHandler3" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/images"
+        android:padding="30dp"
+        tools:context=".MainActivity2">
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="345dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_person_24" />
+
+        <EditText
+            android:text="@={contact.name}"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_below="@+id/image"
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="28dp"
+            android:hint="Provide Your Name"/>
+
+        <EditText
+            android:text="@={contact.email}"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:id="@+id/emailEDT"
+            android:layout_below="@id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Provide E-MAIL" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/emailEDT"
+            android:weightSum="1">
+
+        <Button
+            android:onClick="@{clickHandler::onBtnnClicked}"
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#8D53B6"
+            android:layout_weight="0.4"
+            android:text="Submit"
+            android:textColor="@color/white"/>
+        <Button
+            android:onClick="@{clickHandler::onCloseclicked}"
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#8D53B6"
+            android:layout_weight="0.4"
+            android:text="Cancel"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/white"/>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+</layout>
