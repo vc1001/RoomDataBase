@@ -1,4 +1,4 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
+<?xml version="1.0" encoding="utf-8"?>
 
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,10 +12,7 @@
             name="contact"
             type="com.example.roomdatabase.model.Contacts" />
 
-        <variable
-            name="clickHandler"
-            type="com.example.roomdatabase.MyClickHandler3" />
-    </data>
+        </data>
 
 
     <RelativeLayout
@@ -24,7 +21,17 @@
         android:background="@drawable/images"
         android:padding="30dp"
         tools:context=".MainActivity2">
-
+        <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".UpdateFragment"
+            android:id="@+id/fragment">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
         <ImageView
             android:id="@+id/image"
@@ -61,27 +68,26 @@
             android:layout_below="@+id/emailEDT"
             android:weightSum="1">
 
-        <Button
-            android:onClick="@{clickHandler::onBtnnClicked}"
-            android:id="@+id/submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#8D53B6"
-            android:layout_weight="0.4"
-            android:text="Submit"
-            android:textColor="@color/white"/>
-        <Button
-            android:onClick="@{clickHandler::onCloseclicked}"
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#8D53B6"
-            android:layout_weight="0.4"
-            android:text="Cancel"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/white"/>
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#8D53B6"
+                android:layout_weight="0.4"
+                android:text="Submit"
+                android:textColor="@color/white"/>
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#8D53B6"
+                android:layout_weight="0.4"
+                android:text="Cancel"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/white"/>
         </LinearLayout>
-
+            </LinearLayout>
+        </FrameLayout>
 
 
     </RelativeLayout>

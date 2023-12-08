@@ -26,13 +26,15 @@ public class MainActivity3 extends AppCompatActivity {
 
         login = new Contacts();
         handler = new MyClickHandler3(this, login, myViewModel);
-        String a1 = getIntent().getStringExtra("name");
-        String a2 = getIntent().getStringExtra("email");
-        login.setName(a1);
-        login.setEmail(a2);
-        activityMain3Binding.executePendingBindings();
-        activityMain3Binding.setContact(login);
-        activityMain3Binding.setClickHandler(handler);
-
+        if (getIntent().getExtras() != null) {
+            String a1 = getIntent().getStringExtra("name");
+            String a2 = getIntent().getStringExtra("email");
+            String a3 = String.valueOf(getIntent().getIntExtra("id", -1));
+            login.setName(a1);
+            login.setEmail(a2);
+            login.setId(Integer.parseInt(a3));
+            activityMain3Binding.setContact(login);
+            activityMain3Binding.setClickHandler(handler);
+        }
     }
 }

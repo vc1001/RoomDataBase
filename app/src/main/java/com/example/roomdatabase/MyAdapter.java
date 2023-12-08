@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.roomdatabase.OnContactClickListener;
+import com.example.roomdatabase.R;
 import com.example.roomdatabase.databinding.ItemListBinding;
 import com.example.roomdatabase.model.Contacts;
 
@@ -16,11 +18,12 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ContactViewHolder> {
 
     private ArrayList<Contacts> contacts;
-    private RecyclerviewInterface recyclerviewInterface;
+    public Contacts contact;
+    private OnContactClickListener onContactClickListener;
 
-    public MyAdapter(ArrayList<Contacts> contacts,RecyclerviewInterface recyclerviewInterface) {
+    public MyAdapter(ArrayList<Contacts> contacts, OnContactClickListener onContactClickListener) {
         this.contacts = contacts;
-        this.recyclerviewInterface=recyclerviewInterface;
+        this.onContactClickListener = onContactClickListener;
     }
 
     @NonNull
@@ -76,10 +79,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ContactViewHolder>
             contactListItemBinding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (recyclerviewInterface!=null){
+                    if (onContactClickListener !=null){
                         int position1=getAdapterPosition();
                         if (position1!=RecyclerView.NO_POSITION){
-                            recyclerviewInterface.OnItemClick(position1);
+                            onContactClickListener.onContactClick(position1);
                         }
                     }
                 }

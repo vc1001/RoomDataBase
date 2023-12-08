@@ -1,29 +1,28 @@
 package com.example.roomdatabase;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-
 import com.example.roomdatabase.DataBase.Contactdatabase;
 import com.example.roomdatabase.ViewModel.ContactViewModel;
 import com.example.roomdatabase.databinding.ActivityMainBinding;
 import com.example.roomdatabase.model.Contacts;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RecyclerviewInterface {
-     Contactdatabase contactdatabase;
+public class MainActivity extends AppCompatActivity implements OnContactClickListener {
+    Contactdatabase contactdatabase;
     private ArrayList<Contacts> contactsArrayList = new ArrayList<>();
     private MyAdapter myAdapter;
     private ActivityMainBinding mainBinding;
@@ -112,13 +111,24 @@ public class MainActivity extends AppCompatActivity implements RecyclerviewInter
 
     }
 
-    @Override
-    public void OnItemClick(int position) {
-        Intent intent=new Intent(MainActivity.this, MainActivity3.class);
-        intent.putExtra("name",contactsArrayList.get(position).getName());
-        intent.putExtra("email",contactsArrayList.get(position).getEmail());
 
-        startActivity(intent);
+    @Override
+    public void onContactClick(int position) {
+        // Create an instance of the dialog fragment
+        UpdateFragment dialogFragment = new UpdateFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("name",contactsArrayList.get(position).getName());
+        bundle.putString("email",contactsArrayList.get(position).getEmail());
+        bundle.putInt("id",contactsArrayList.get(position).getId());
+        dialogFragment.setArguments(bundle);
+
+
+        // Show the dialog
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        dialogFragment.show(fragmentManager, "UpdateFragment");
+    }
 
     }
-}
+
+
+
