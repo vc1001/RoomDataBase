@@ -54,7 +54,7 @@ public class UpdateFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 if (login.getName().isEmpty() || login.getEmail().isEmpty()) {
-                    Toast.makeText(context, "Please fill the Above fields ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please fill the Above fields ", Toast.LENGTH_SHORT).show();
                 } else {
                     if (myViewModel != null) {
                         myViewModel.updateLogindetail(login);
